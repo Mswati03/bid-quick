@@ -13,7 +13,7 @@ export default function Home() {
 
   return (
     <div>
-      <h2 className="text-2xl font-bold mb-4">Active Auctions</h2>
+      <h2 className="text-2xl font-bold mb-4 mt-[50px]">Active Auctions</h2>
       <Tabs defaultValue="All" className="w-full">
         <TabsList className="mb-4">
           <TabsTrigger value="All" onClick={() => setActiveCategory('All')}>All</TabsTrigger>

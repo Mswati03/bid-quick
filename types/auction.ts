@@ -1,3 +1,5 @@
+import { Key } from "react";
+
 export interface AuctionImage {
    id:string
     url: string
@@ -5,6 +7,7 @@ export interface AuctionImage {
   }
   
   export interface Specification {
+  
   id:string;
     value:string;
     color: string; size: string

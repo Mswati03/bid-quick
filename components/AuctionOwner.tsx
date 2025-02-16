@@ -18,7 +18,7 @@ export function AuctionOwnerInfo({ owner }: { owner: AuctionOwner }) {
         <div className="flex items-center">
           <Star className="w-4 h-4 text-yellow-400 mr-1" />
           <span>
-            {owner.rating.toFixed(1)} ({owner.totalAuctions} auctions)
+            {owner.rating.toFixed(1)} ({owner.totalAuctions} auction(s))
           </span>
         </div>
         <p className="text-sm text-gray-500">Member since {owner.joinedDate.toLocaleDateString()}</p>

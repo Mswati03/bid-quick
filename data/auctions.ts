@@ -1,4 +1,5 @@
 export interface Auction {
+ 
     id: string;
     title: string;
     description: string;
@@ -41,12 +42,12 @@ export const auctions: Auction[] = [
         specifications: { color: "red", size: "M",id:"00011", value:"PP" },
         owner: { name: "Owner 1", id:"owner1",
        
-            avatar: "oo",
+            avatar:"https://randomuser.me/api/portraits/lego/5.jpg",
             rating: 9,
             totalAuctions: 1,
             joinedDate: new Date(),
         },
-        reviews: [{id:"03",
+        reviews: [{id:"011",
             userId: "MSwati",
             username: "mswatii",
             rating: 9,
@@ -71,12 +72,12 @@ export const auctions: Auction[] = [
         specifications: { color: "red", size: "M", id:"0001", value:"M" },
         owner: { name: "Owner 1", id:"owner1",
        
-            avatar: "oo",
+            avatar:"https://randomuser.me/api/portraits/lego/5.jpg",
             rating: 9,
             totalAuctions: 1,
             joinedDate: new Date(),
         },
-        reviews: [{id:"03",
+        reviews: [{id:"022",
             userId: "MSwati",
             username: "mswatii",
             rating: 9,
@@ -101,12 +102,12 @@ export const auctions: Auction[] = [
         specifications: { color: "red", size: "M" , id:"0002", value:"N"},
         owner: { name: "Owner 1", id:"owner1",
        
-            avatar: "oo",
+            avatar:"https://randomuser.me/api/portraits/lego/5.jpg",
             rating: 9,
             totalAuctions: 1,
             joinedDate: new Date(),
         },
-        reviews: [{id:"03",
+        reviews: [{id:"044",
             userId: "MSwati",
             username: "mswatii",
             rating: 9,
@@ -131,12 +132,12 @@ export const auctions: Auction[] = [
         specifications: { color: "red", size: "M", id:"0003", value:"D"},
         owner: { name: "Owner 1", id:"owner1",
        
-            avatar: "oo",
+            avatar:"https://randomuser.me/api/portraits/lego/5.jpg",
             rating: 9,
             totalAuctions: 1,
             joinedDate: new Date(),
         },
-        reviews: [{id:"03",
+        reviews: [{id:"033",
             userId: "MSwati",
             username: "mswatii",
             rating: 9,
@@ -161,12 +162,12 @@ export const auctions: Auction[] = [
         specifications: { color: "red", size: "M",id:"0005", value:"P" },
         owner: { name: "Owner 1", id:"owner1",
        
-            avatar: "oo",
+            avatar:"https://randomuser.me/api/portraits/lego/5.jpg",
             rating: 9,
             totalAuctions: 1,
             joinedDate: new Date(),
         },
-        reviews: [{id:"03",
+        reviews: [{id:"055",
             userId: "MSwati",
             username: "mswatii",
             rating: 9,

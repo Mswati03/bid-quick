@@ -30,6 +30,7 @@ export default function BidForm({ auctionId, currentBid }: { auctionId: string, 
           min={currentBid + 1}
           step="0.01"
           className="w-32"
+          placeholder='Enter your bid'
         />
         <Button type="submit">Place Bid</Button>
       </div>

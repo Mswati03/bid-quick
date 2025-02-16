@@ -1,3 +1,4 @@
+import { Store } from "lucide-react"
 import Link from "next/link"
 
 export default function Footer() {
@@ -6,8 +7,20 @@ export default function Footer() {
       <div className="container mx-auto px-4">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           <div>
-            <h3 className="font-bold text-lg mb-4">About Us</h3>
-            <p className="text-gray-600">BidQuick is your premier destination for fast and exciting online auctions.</p>
+          
+           
+            <Link
+            href="/"
+            className="text-lg font-semibold inline-block  "
+            prefetch={false}
+          >
+            <span className="flex items-center">
+              <Store className="h-6 w-6 mr-2 mb-2" />
+              BidQuick
+              <span className="sr-only">BidQuick</span>
+            </span>
+          </Link>
+            <p className="text-gray-600 mt-3">BidQuick is your premier destination for fast and exciting online auctions.</p>
           </div>
           <div>
             <h3 className="font-bold text-lg mb-4">Quick Links</h3>

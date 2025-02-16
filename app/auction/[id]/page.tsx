@@ -28,10 +28,10 @@ export default async function AuctionPage({
           <p className="text-gray-600 mb-6">{auction.description}</p>
           <div className="bg-gray-100 p-4 rounded-lg mb-6">
             <p className="text-2xl font-bold text-blue-600 mb-2">
-              Current Bid: ${auction.currentBid}
+              Current Bid: M{auction.currentBid}
             </p>
             <p className="text-gray-600">
-              Starting Bid: ${auction.startingBid}
+              Starting Bid: M{auction.startingBid}
             </p>
             <p className="text-gray-600">
               Auction ends: {auction.endTime.toLocaleString()}

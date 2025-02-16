@@ -15,7 +15,7 @@ export function AuctionCard({ auction }: { auction: any }) {
             {auction.description || "No description available."}
           </p>
           <div className="flex justify-between items-center mb-2">
-            <span className="font-bold text-blue-600">Current Bid: ${auction.currentBid || 0}</span>
+            <span className="font-bold text-blue-600">Current Bid: M{auction.currentBid || 0}</span>
             <span className="text-sm text-gray-500">
               Ends: {auction.endTime ? new Date(auction.endTime).toLocaleDateString() : "N/A"}
             </span>
