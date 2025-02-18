@@ -1,5 +1,6 @@
 import { z } from "zod"
 import { userSchema } from "./user"
+import { reviewSchema } from "@/types/auction"
 
 const auctionImageSchema = z.object({
   id: z.string().uuid(),
@@ -22,6 +23,7 @@ export const auctionSchema = z.object({
   category: z.string(),
   images: z.array(auctionImageSchema).min(1),
   specifications: z.array(specificationSchema),
+  reviews: z.array(reviewSchema),
   owner: userSchema,
   createdAt: z.date(),
 })

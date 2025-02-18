@@ -10,14 +10,14 @@ export default function Home() {
   const filteredAuctions = activeCategory === 'All' 
     ? auctions 
     : auctions.filter(auction => auction.category === activeCategory)
-
+    const categoryArray = categories._def.values;
   return (
     <div>
       <h2 className="text-2xl font-bold mb-4 mt-[50px]">Active Auctions</h2>
       <Tabs defaultValue="All" className="w-full">
         <TabsList className="mb-4">
           <TabsTrigger value="All" onClick={() => setActiveCategory('All')}>All</TabsTrigger>
-          {categories.map(category => (
+          {categoryArray.map(category => (
             <TabsTrigger 
               key={category} 
               value={category}
@@ -34,7 +34,7 @@ export default function Home() {
             ))}
           </div>
         </TabsContent>
-        {categories.map(category => (
+        {categoryArray.map(category => (
           <TabsContent key={category} value={category} className="mt-0">
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
               {filteredAuctions.map((auction) => (

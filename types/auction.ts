@@ -1,4 +1,4 @@
-import { Key } from "react";
+
 import { z } from "zod";
 
 export const auctionImageSchema = z.object({
@@ -13,6 +13,7 @@ export const specificationSchema = z.object({
   color: z.string().min(1).max(50),
   size: z.string().min(1).max(50),
 });
+export type Specification = z.infer<typeof specificationSchema>
   
 export const reviewSchema = z.object({
   id: z.string().uuid(),

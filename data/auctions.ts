@@ -1,179 +1,66 @@
-export interface Auction {
- 
-    id: string;
-    title: string;
-    description: string;
-    currentBid: number;
-    endTime: Date;
-    images: {url:string;alt:string; id:string}[];
-    category: string;
-    startingBid: number;
-    specifications: { color: string; size: string; id:string;value:string; };
-    owner:     {id: string
-    name: string
-    avatar: string
-    rating: number
-    totalAuctions: number
-    joinedDate: Date };
-    reviews: { id: string
-        userId: string
-        username: string
-        rating: number
-        comment: string
-        createdAt: Date }[];
-}
+import { auctionSchema } from "@/schemas/auction";
+import { z } from "zod";
 
-export const auctions: Auction[] = [
-    {
-        id: '1',
-        title: 'Vintage Leather Jacket',
-        description: 'A classic leather jacket from the 1970s',
-        currentBid: 150,
-        endTime: new Date('2023-12-31'),
-        images: [
-            { url: "https://placehold.co/400x400.png", alt: "Image 1" , id:"1",},
-            { url: "https://placehold.co/400x400.png", alt: "Image 2", id:"2" }
-          ],
-        category: 'Clothing',
-      
-     
-        startingBid: 50,
-  
-        specifications: { color: "red", size: "M",id:"00011", value:"PP" },
-        owner: { name: "Owner 1", id:"owner1",
-       
-            avatar:"https://randomuser.me/api/portraits/lego/5.jpg",
-            rating: 9,
-            totalAuctions: 1,
-            joinedDate: new Date(),
+export const auctions = z.array(auctionSchema).parse([
+  {
+    id: "123e4567-e89b-12d3-a456-426614174000",
+    title: "Vintage Leather Jacket",
+    description: "A classic leather jacket from the 1970s",
+    currentBid: 150,
+    endTime: new Date("2023-12-31"),
+    images: [
+      {
+        url: "https://placehold.co/400x400.png",
+        alt: "Image 1",
+        id: "123e4567-e89b-12d3-a456-426614174001",
+      },
+      {
+        url: "https://placehold.co/400x400.png",
+        alt: "Image 2",
+        id: "123e4567-e89b-12d3-a456-426614174002",
+      },
+    ],
+    category: "Clothing",
+    startingBid: 50,
+    reviews: [
+        {
+          id: "123e4567-e89b-12d3-a456-426614174005",
+          auctionId: "123e4567-e89b-12d3-a456-426614174000",
+          userId: "123e4567-e89b-12d3-a456-426614174006",
+          username: "mswatii",
+          rating: 5,
+          comment: "Good",
+          createdAt: new Date(),
         },
-        reviews: [{id:"011",
-            userId: "MSwati",
-            username: "mswatii",
-            rating: 9,
-            comment: "Good",
-            createdAt: new Date }],
+      ],
+    specifications: [
+      {
+        key: "color",
+        value: "red",
+        size: "M",
+        id: "123e4567-e89b-12d3-a456-426614174003",
+      },
+    ],
+    owner: {
+      name: "Owner 1",
+      id: "123e4567-e89b-12d3-a456-426614174004",
+      email: "owner1@example.com",
+      avatar: "https://randomuser.me/api/portraits/lego/5.jpg",
+      rating: 5,
+      totalAuctions: 1,
+      joinedDate: new Date(),
     },
-    {
-        id: '2',
-        title: 'Modern Art Painting',
-        description: 'An original piece by a renowned contemporary artist',
-        currentBid: 500,
-        endTime: new Date('2023-12-25'),
-        images: [
-            { url: "https://placehold.co/400x400.png", alt: "Image 1",id:"3" },
-            { url: "https://placehold.co/400x400.png", alt: "Image 2" ,id:"4"}
-          ],
-        category: 'Art',
-      
-     
-        startingBid: 50,
-     
-        specifications: { color: "red", size: "M", id:"0001", value:"M" },
-        owner: { name: "Owner 1", id:"owner1",
-       
-            avatar:"https://randomuser.me/api/portraits/lego/5.jpg",
-            rating: 9,
-            totalAuctions: 1,
-            joinedDate: new Date(),
-        },
-        reviews: [{id:"022",
-            userId: "MSwati",
-            username: "mswatii",
-            rating: 9,
-            comment: "Good",
-            createdAt: new Date }],
-    },
-    {
-        id: '3',
-        title: 'Diamond Necklace',
-        description: 'A stunning diamond necklace with 2 carat total weight',
-        currentBid: 1000,
-        endTime: new Date('2023-12-28'),
-        images: [
-            { url: "https://placehold.co/400x400.png", alt: "Image 1", id:"8" },
-            { url: "https://placehold.co/400x400.png", alt: "Image 2",id:"9" }
-          ],
-        category: 'Jewelry',
-      
-       
-        startingBid: 50,
-       
-        specifications: { color: "red", size: "M" , id:"0002", value:"N"},
-        owner: { name: "Owner 1", id:"owner1",
-       
-            avatar:"https://randomuser.me/api/portraits/lego/5.jpg",
-            rating: 9,
-            totalAuctions: 1,
-            joinedDate: new Date(),
-        },
-        reviews: [{id:"044",
-            userId: "MSwati",
-            username: "mswatii",
-            rating: 9,
-            comment: "Good",
-            createdAt: new Date }],
-    },
-    {
-        id: '4',
-        title: 'Latest Smartphone',
-        description: 'The newest flagship smartphone with advanced features',
-        currentBid: 600,
-        endTime: new Date('2023-12-30'),
-        images: [
-            { url: "https://placehold.co/400x400.png", alt: "Image 1",id:"5" },
-            { url: "https://placehold.co/400x400.png", alt: "Image 2",id:"6" }
-          ],
-        category: 'Tech',
-      
-      
-        startingBid: 50,
-       
-        specifications: { color: "red", size: "M", id:"0003", value:"D"},
-        owner: { name: "Owner 1", id:"owner1",
-       
-            avatar:"https://randomuser.me/api/portraits/lego/5.jpg",
-            rating: 9,
-            totalAuctions: 1,
-            joinedDate: new Date(),
-        },
-        reviews: [{id:"033",
-            userId: "MSwati",
-            username: "mswatii",
-            rating: 9,
-            comment: "Good",
-            createdAt: new Date }],
-    },
-    {
-        id: '5',
-        title: 'Antique Wooden Desk',
-        description: 'A beautifully crafted wooden desk from the 19th century',
-        currentBid: 300,
-        endTime: new Date('2023-12-29'),
-        images: [
-            { url: "https://placehold.co/400x400.png", alt: "Image 1", id:"7" },
-            { url: "https://placehold.co/400x400.png", alt: "Image 2",id:"8" }
-          ],
-        category: 'More',
-      
-     
-        startingBid: 50,
     
-        specifications: { color: "red", size: "M",id:"0005", value:"P" },
-        owner: { name: "Owner 1", id:"owner1",
-       
-            avatar:"https://randomuser.me/api/portraits/lego/5.jpg",
-            rating: 9,
-            totalAuctions: 1,
-            joinedDate: new Date(),
-        },
-        reviews: [{id:"055",
-            userId: "MSwati",
-            username: "mswatii",
-            rating: 9,
-            comment: "Good",
-            createdAt: new Date }],
-    },
-];
+    createdAt: new Date(),
+  },
+  // ... other auctions ...
+]);
 
-export const categories = ['Clothing', 'Tech', 'Art', 'Jewelry', 'More'];
+export const categories = z.enum([
+  "Clothing",
+  "Tech",
+  "Art",
+  "Jewelry",
+  "More",
+]);
+auctions[0].reviews[0].userId;

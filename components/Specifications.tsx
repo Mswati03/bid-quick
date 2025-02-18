@@ -15,4 +15,3 @@ export function Specifications({ specs }: { specs: Specification[] }) {
     </div>
   )
 }
-
