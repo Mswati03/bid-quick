@@ -10,5 +10,3 @@ export const reviewSchema = z.object({
   createdAt: z.date(),
 })
 
-export type Review = z.infer<typeof reviewSchema>
-

@@ -1,17 +1,11 @@
 import { z } from "zod"
-import { userSchema } from "./user"
-import { reviewSchema } from "@/types/auction"
+import { userSchema } from "./client"
+import { reviewSchema, Specification } from "@/types/auction"
+import { auctionImageSchema } from "./auctionimage"
+import { specificationSchema } from "./specification"
 
-const auctionImageSchema = z.object({
-  id: z.string().uuid(),
-  url: z.string().url(),
-  alt: z.string(),
-})
 
-const specificationSchema = z.object({
-  key: z.string(),
-  value: z.string(),
-})
+
 
 export const auctionSchema = z.object({
   id: z.string().uuid(),
@@ -27,6 +21,4 @@ export const auctionSchema = z.object({
   owner: userSchema,
   createdAt: z.date(),
 })
-
-export type Auction = z.infer<typeof auctionSchema>
 

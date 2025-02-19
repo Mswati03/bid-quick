@@ -1,4 +1,5 @@
-import type { Review } from "@/schemas/review"
+
+import { Review } from "@/types/auction"
 import { Star } from "lucide-react"
 
 export function Reviews({ reviews }: { reviews: Review[] }) {

@@ -10,5 +10,3 @@ export const userSchema = z.object({
   joinedDate: z.date(),
 })
 
-export type User = z.infer<typeof userSchema>
-

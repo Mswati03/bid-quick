@@ -33,14 +33,15 @@ export const auctions = z.array(auctionSchema).parse([
           createdAt: new Date(),
         },
       ],
-    specifications: [
-      {
-        key: "color",
-        value: "red",
-        size: "M",
-        id: "123e4567-e89b-12d3-a456-426614174003",
-      },
-    ],
+      specifications: [
+        {
+          key: "color",
+          color:"red",
+          value: "red",
+          size: "M",
+          id: "123e4567-e89b-12d3-a456-426614174003",
+        },
+      ],
     owner: {
       name: "Owner 1",
       id: "123e4567-e89b-12d3-a456-426614174004",
