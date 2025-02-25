@@ -19,7 +19,7 @@ export default function LoginPage() {
       email,
       password,
     })
-    if (result?.error) {
+     if (result?.error) {
       // Handle error
       console.error(result.error)
     } else {
