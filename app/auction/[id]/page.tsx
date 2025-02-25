@@ -38,11 +38,11 @@ export default async function AuctionPage({
             </p>
           </div>
           <BidForm auctionId={auction.id} currentBid={auction.currentBid} />
-          <Specifications specs={[auction.specifications]} />
+          <Specifications specs={auction.specifications} />
         </div>
       </div>
       <div className="mt-12">
-        <AuctionOwnerInfo owner={auction.owner} />
+      <AuctionOwnerInfo owner={{ ...auction.owner, avatar: auction.owner.avatar || '' }} />
         <Reviews reviews={auction.reviews} />
       </div>
     </div>

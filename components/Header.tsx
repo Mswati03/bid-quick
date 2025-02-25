@@ -102,7 +102,7 @@ export default function Header() {
               <DropdownMenuItem>Logout</DropdownMenuItem>
             </DropdownMenuContent>
           </DropdownMenu>*/}
-          <Button>Get Started</Button>
+          <Link href="/api/auth/signup" prefetch={false}><Button>Get Started</Button></Link>
         </div>
       </header>
     </div>
