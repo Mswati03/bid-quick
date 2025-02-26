@@ -1,15 +1,14 @@
 "use client";
 import Link from "next/link";
 import {
-  BarChartIcon,
+
   DollarSign,
   HelpingHandIcon,
   LayoutDashboardIcon,
   MenuIcon,
-  MountainIcon,
   Store,
   User2,
-  UsersIcon,
+  Bell,
 } from "lucide-react";
 import { Button } from "./ui/button";
 import { Sheet, SheetTrigger, SheetContent, SheetTitle } from "./ui/sheet";
@@ -20,12 +19,18 @@ import {
   DropdownMenuContent,
   DropdownMenuSeparator,
 } from "./ui/dropdown-menu";
-import { Avatar, AvatarImage, AvatarFallback } from "./ui/avatar";
+import { Avatar } from "./ui/avatar";
+import { signOut } from "next-auth/react"
+
+// Function to check if user is signed in
+import { useSession } from "next-auth/react";
 
 export default function Header() {
+  const { data: session } = useSession();
+
   return (
     <div>
-   <header className="container mx-auto px-4 py-6 bg-white h-[70px] flex justify-between items-center fixed top-0 left-0 right-0 z-50">
+      <header className="container mx-auto px-4 py-6 bg-white h-[70px] flex justify-between items-center fixed top-0 left-0 right-0 z-50">
         <nav className="flex items-center gap-6">
           <Link
             href="/"
@@ -40,13 +45,13 @@ export default function Header() {
           </Link>
           <div className="hidden gap-6 items-center mx-auto justify-center text-sm font-medium md:flex">
             <Link href="#" className="hover:underline" prefetch={false}>
-            Browse Auctions
+              Browse Auctions
             </Link>
             <Link href="#" className="hover:underline" prefetch={false}>
-            Create Listing 
+              Create Listing
             </Link>
             <Link href="#" className="hover:underline" prefetch={false}>
-            Help & Support
+              Help & Support
             </Link>
           </div>
         </nav>
@@ -75,7 +80,7 @@ export default function Header() {
                   prefetch={false}
                 >
                   <DollarSign className="h-5 w-5" />
-                  Create  Listing
+                  Create Listing
                 </Link>
                 <Link
                   href="#"
@@ -88,21 +93,29 @@ export default function Header() {
               </div>
             </SheetContent>
           </Sheet>
-          {/*<DropdownMenu>
-            <DropdownMenuTrigger asChild>
-              <Avatar className="h-9 w-9">
-               <User2 className="h-7 w-7 mt-1" />
-               
-              </Avatar>
-            </DropdownMenuTrigger>
-            <DropdownMenuContent align="end">
-              <DropdownMenuItem>My Account</DropdownMenuItem>
-              <DropdownMenuItem>Settings</DropdownMenuItem>
-              <DropdownMenuSeparator />
-              <DropdownMenuItem>Logout</DropdownMenuItem>
-            </DropdownMenuContent>
-          </DropdownMenu>*/}
-          <Link href="/api/auth/signup" prefetch={false}><Button>Get Started</Button></Link>
+          {session && (
+            <div className="flex items-center gap-4">
+              <Link href="#" className="text-gray-600 hover:text-gray-900">
+                <Bell className="h-6 w-6" />
+              </Link>
+              <DropdownMenu>
+                <DropdownMenuTrigger asChild>
+                  <Avatar className="h-7 w-7">
+                    <User2 className="h-7 w-7 mt-1" />
+                  </Avatar>
+                </DropdownMenuTrigger>
+                <DropdownMenuContent align="end">
+                  <DropdownMenuItem>My Account</DropdownMenuItem>
+                  <DropdownMenuItem>Settings</DropdownMenuItem>
+                  <DropdownMenuSeparator />
+                  <DropdownMenuItem onClick={() => signOut()}>Logout</DropdownMenuItem>
+                </DropdownMenuContent>
+              </DropdownMenu>
+            </div>
+          )}
+          <Link href="/api/auth/signup" prefetch={false}>
+            <Button >{session ? "Dashboard" : "Get Started"}</Button>
+          </Link>
         </div>
       </header>
     </div>

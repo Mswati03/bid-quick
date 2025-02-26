@@ -13,7 +13,7 @@ export default function Home() {
     const categoryArray = categories._def.values;
   return (
     <div>
-      <h2 className="text-2xl font-bold mb-4 mt-[50px]">Active Auctions</h2>
+      <h2 className="text-2xl font-bold mb-4 mt-20">Active Auctions</h2>
       <Tabs defaultValue="All" className="w-full">
         <TabsList className="mb-4">
           <TabsTrigger value="All" onClick={() => setActiveCategory('All')}>All</TabsTrigger>
