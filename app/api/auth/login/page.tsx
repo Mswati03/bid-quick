@@ -1,31 +1,39 @@
 "use client"
-
-import type React from "react"
-
-import { useState } from "react"
-import { signIn } from "next-auth/react"
-import { useRouter } from "next/navigation"
-import Link from "next/link"
+import React from "react";
+import { useState } from "react";
+import { signIn } from "next-auth/react";
+import { useRouter } from "next/navigation";
+import Link from "next/link";
 
 export default function LoginPage() {
-  const [email, setEmail] = useState("")
-  const [password, setPassword] = useState("")
-  const router = useRouter()
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [loginButtonText, setLoginButtonText] = useState("Login");
+  const [googleLoginButtonText, setGoogleLoginButtonText] = useState("Login with Google");
+  const router = useRouter();
 
   const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault()
+    e.preventDefault();
+    setLoginButtonText("Logging in...");
     const result = await signIn("credentials", {
       redirect: false,
       email,
       password,
-    })
-     if (result?.error) {
+    });
+    if (result?.error) {
       // Handle error
-      console.error(result.error)
+      console.error(result.error);
+      setLoginButtonText("Login");
     } else {
-      router.push("/")
+      router.push("/");
     }
-  }
+  };
+
+  const handleGoogleLogin = async () => {
+    setGoogleLoginButtonText("Logging in with Google...");
+    await signIn("google");
+    setGoogleLoginButtonText("Login with Google");
+  };
 
   return (
     <div className="max-w-md mx-auto mt-20">
@@ -57,13 +65,22 @@ export default function LoginPage() {
             required
           />
         </div>
-        <button type="submit" className="w-full bg-blue-600 text-white py-2 rounded hover:bg-blue-700">
-          Login
+        <button
+          type="submit"
+          disabled={!email || !password}
+          className={`w-full bg-blue-600 text-white py-2 rounded hover:bg-blue-700 ${
+            !email || !password ? "opacity-50 cursor-not-allowed" : ""
+          }`}
+        >
+          {loginButtonText}
         </button>
       </form>
       <div className="mt-4">
-        <button onClick={() => signIn("google")} className="w-full bg-red-600 text-white py-2 rounded hover:bg-red-700">
-          Login with Google
+        <button
+          onClick={handleGoogleLogin}
+          className="w-full bg-red-600 text-white py-2 rounded hover:bg-red-700"
+        >
+          {googleLoginButtonText}
         </button>
       </div>
       <p className="mt-4 text-center">
@@ -73,6 +90,5 @@ export default function LoginPage() {
         </Link>
       </p>
     </div>
-  )
+  );
 }
-

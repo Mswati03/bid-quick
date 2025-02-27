@@ -1,14 +1,13 @@
 "use client";
 import Link from "next/link";
 import {
-
   DollarSign,
   HelpingHandIcon,
   LayoutDashboardIcon,
   MenuIcon,
   Store,
-  User2,
   Bell,
+  User2,
 } from "lucide-react";
 import { Button } from "./ui/button";
 import { Sheet, SheetTrigger, SheetContent, SheetTitle } from "./ui/sheet";
@@ -19,10 +18,7 @@ import {
   DropdownMenuContent,
   DropdownMenuSeparator,
 } from "./ui/dropdown-menu";
-import { Avatar } from "./ui/avatar";
-import { signOut } from "next-auth/react"
-
-// Function to check if user is signed in
+import { signOut } from "next-auth/react";
 import { useSession } from "next-auth/react";
 
 export default function Header() {
@@ -63,7 +59,7 @@ export default function Header() {
                 <span className="sr-only">Toggle navigation menu</span>
               </Button>
             </SheetTrigger>
-            <SheetContent side="right">
+            <SheetContent side="right" className="max-w-sm">
               <SheetTitle>Navigation</SheetTitle>
               <div className="grid gap-6 p-4">
                 <Link
@@ -90,32 +86,64 @@ export default function Header() {
                   <HelpingHandIcon className="h-5 w-5" />
                   Help & Support
                 </Link>
+                {session && (
+                  <div className="flex flex-col mt-4">
+                    <div className="flex items-center gap-2">
+                      <User2 className="h-6 w-6" />
+                      <span>{session?.user?.name}</span>
+                    </div>
+                    <DropdownMenu>
+                      <DropdownMenuTrigger asChild>
+                        <Button className="w-full mt-2">Account Options</Button>
+                      </DropdownMenuTrigger>
+                      <DropdownMenuContent align="end" className="w-48">
+                        <DropdownMenuItem>My Account</DropdownMenuItem>
+                        <DropdownMenuItem>Settings</DropdownMenuItem>
+                        <DropdownMenuSeparator />
+                        <DropdownMenuItem onClick={() => signOut()}>
+                          Logout
+                        </DropdownMenuItem>
+                      </DropdownMenuContent>
+                    </DropdownMenu>
+                  </div>
+                )}
               </div>
             </SheetContent>
           </Sheet>
+
+          {/* Notification icon is visible on all screens */}
           {session && (
-            <div className="flex items-center gap-4">
-              <Link href="#" className="text-gray-600 hover:text-gray-900">
-                <Bell className="h-6 w-6" />
-              </Link>
-              <DropdownMenu>
-                <DropdownMenuTrigger asChild>
-                  <Avatar className="h-7 w-7">
-                    <User2 className="h-7 w-7 mt-1" />
-                  </Avatar>
-                </DropdownMenuTrigger>
-                <DropdownMenuContent align="end">
-                  <DropdownMenuItem>My Account</DropdownMenuItem>
-                  <DropdownMenuItem>Settings</DropdownMenuItem>
-                  <DropdownMenuSeparator />
-                  <DropdownMenuItem onClick={() => signOut()}>Logout</DropdownMenuItem>
-                </DropdownMenuContent>
-              </DropdownMenu>
+            <Link href="#" className="text-gray-600 hover:text-gray-900">
+              <Bell className="h-6 w-6" />
+            </Link>
+          )}
+
+          {/* User icon with username visible on larger screens */}
+          {session && (
+            <div>
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <div className="hidden md:flex items-center gap-2 cursor-pointer text-gray-600 hover:text-gray-900">
+                <User2 className="h-7 w-7" />
+                <span className="text-sm">{session?.user?.name}</span>
+              </div>
+              
+              </DropdownMenuTrigger>
+              <DropdownMenuContent align="end" className="w-48">
+              <DropdownMenuItem>My Account</DropdownMenuItem>
+              <DropdownMenuItem>Settings</DropdownMenuItem>
+              <DropdownMenuSeparator />
+              <DropdownMenuItem onClick={() => signOut()}>Logout</DropdownMenuItem>
+              </DropdownMenuContent>
+            </DropdownMenu>
             </div>
           )}
-          <Link href="/api/auth/signup" prefetch={false}>
-            <Button >{session ? "Dashboard" : "Get Started"}</Button>
-          </Link>
+
+          {!session && (
+            <Link href="/api/auth/signup" prefetch={false}>
+              <Button>Get Started</Button>
+            </Link>
+          )}
         </div>
       </header>
     </div>
