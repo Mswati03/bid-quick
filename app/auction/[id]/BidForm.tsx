@@ -26,7 +26,7 @@ export default function BidForm({ auctionId, currentBid }: { auctionId: string, 
 
   return (
     <form onSubmit={handleSubmit} className="mt-4">
-      <div className="flex items-center gap-1">
+      <div className="flex items-center gap-1 ml-7">
         M
         <Input
           type="number"
@@ -38,11 +38,11 @@ export default function BidForm({ auctionId, currentBid }: { auctionId: string, 
           placeholder='Enter your bid'
         />
         {session ? (
-          <Button type="submit" className="ml-2">Place Bid</Button>
+          <Button type="submit" className="ml-5">Place Bid</Button>
         ) : (
           <Dialog>
             <DialogTrigger asChild>
-              <Button className="ml-2">Place Bid</Button>
+              <Button className="ml-5">Place Bid</Button>
             </DialogTrigger>
             <DialogContent>
               <DialogHeader>
@@ -52,9 +52,9 @@ export default function BidForm({ auctionId, currentBid }: { auctionId: string, 
                 </DialogDescription>
               </DialogHeader>
               <DialogFooter className="sm:justify-start">
-          <DialogClose asChild>
+          <DialogClose  className="text-center justify-center mx-auto items-center" asChild>
             <Link href="/api/auth/login">
-            <Button type="button" variant="secondary">
+            <Button type="button" >
               Login to place bid
             </Button>
             </Link>
