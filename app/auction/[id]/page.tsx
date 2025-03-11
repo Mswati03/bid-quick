@@ -4,6 +4,7 @@ import { AuctionOwnerInfo } from "@/components/AuctionOwner";
 import { Reviews } from "@/components/Reviews";
 import BidForm from "./BidForm";
 import { auctions } from "@/data/auctions"; // We'll update this mock data later
+import BidHistory from "@/components/Bidhistory";
 
 export default async function AuctionPage({
   params,
@@ -38,10 +39,12 @@ export default async function AuctionPage({
             </p>
           </div>
           <BidForm auctionId={auction.id} currentBid={auction.currentBid} />
-          <Specifications specs={auction.specifications} />
+          <BidHistory/>
+          
         </div>
       </div>
       <div className="mt-12">
+        <Specifications specs={auction.specifications} />
       <AuctionOwnerInfo owner={{ ...auction.owner, avatar: auction.owner.avatar || '' }} />
         <Reviews reviews={auction.reviews} />
       </div>

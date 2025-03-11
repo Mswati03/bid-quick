@@ -3,8 +3,12 @@
 import { useState } from 'react'
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
+import { Dialog, DialogTrigger, DialogContent, DialogHeader, DialogTitle, DialogDescription, DialogFooter, DialogClose } from "@/components/ui/dialog"
+import { useSession } from "next-auth/react"
+import Link from 'next/link'
 
 export default function BidForm({ auctionId, currentBid }: { auctionId: string, currentBid: number }) {
+  const { data: session } = useSession()
   const [bidAmount, setBidAmount] = useState(currentBid + 1)
   const [message, setMessage] = useState('')
 
@@ -22,7 +26,8 @@ export default function BidForm({ auctionId, currentBid }: { auctionId: string, 
 
   return (
     <form onSubmit={handleSubmit} className="mt-4">
-      <div className="flex items-center gap-2">
+      <div className="flex items-center gap-1">
+        M
         <Input
           type="number"
           value={bidAmount}
@@ -32,7 +37,32 @@ export default function BidForm({ auctionId, currentBid }: { auctionId: string, 
           className="w-32"
           placeholder='Enter your bid'
         />
-        <Button type="submit">Place Bid</Button>
+        {session ? (
+          <Button type="submit" className="ml-2">Place Bid</Button>
+        ) : (
+          <Dialog>
+            <DialogTrigger asChild>
+              <Button className="ml-2">Place Bid</Button>
+            </DialogTrigger>
+            <DialogContent>
+              <DialogHeader>
+                <DialogTitle>Cannot Place Bid</DialogTitle>
+                <DialogDescription>
+                  This error occurs because you are currently not signed in.
+                </DialogDescription>
+              </DialogHeader>
+              <DialogFooter className="sm:justify-start">
+          <DialogClose asChild>
+            <Link href="/api/auth/login">
+            <Button type="button" variant="secondary">
+              Login to place bid
+            </Button>
+            </Link>
+          </DialogClose>
+        </DialogFooter>
+            </DialogContent>
+          </Dialog>
+        )}
       </div>
       {message && <p className="mt-2 text-sm text-blue-600">{message}</p>}
     </form>
